@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import authController from '../controllers/authControllerTemp';
+import authController from '../controllers/authController';
 const router = Router();
 
 //新規登録のエンドポイント

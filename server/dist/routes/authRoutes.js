@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const authControllerTemp_1 = __importDefault(require("../controllers/authControllerTemp"));
+const authController_1 = __importDefault(require("../controllers/authController"));
 const router = (0, express_1.Router)();
 //新規登録のエンドポイント
 // router.post('/register', authController.createUser);
@@ -17,11 +17,11 @@ const router = (0, express_1.Router)();
 //DBから特定人のデータを削除するエンドポイント
 // router.delete('/:name', authController.delete);
 //Signupのエンドポイント
-router.post('/signup', authControllerTemp_1.default.getAll, authControllerTemp_1.default.passportSignup, authControllerTemp_1.default.signup);
+router.post('/signup', authController_1.default.getAll, authController_1.default.passportSignup, authController_1.default.signup);
 //Frontendからの認証チェック
-router.get('/checkAuth', authControllerTemp_1.default.checkAuth);
+router.get('/checkAuth', authController_1.default.checkAuth);
 //Frontendからのログイン要求
-router.post('/login', authControllerTemp_1.default.getAll, authControllerTemp_1.default.passportAuth, authControllerTemp_1.default.login);
+router.post('/login', authController_1.default.getAll, authController_1.default.passportAuth, authController_1.default.login);
 //Frontendからのログアウト要求
-router.get('/logout', authControllerTemp_1.default.logout);
+router.get('/logout', authController_1.default.logout);
 exports.default = router;
