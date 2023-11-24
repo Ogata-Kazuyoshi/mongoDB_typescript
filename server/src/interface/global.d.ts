@@ -2,6 +2,7 @@ import { ObjectId } from 'mongoose';
 
 export interface UserType {
   username: string;
+  salt: string;
   password: string;
 }
 

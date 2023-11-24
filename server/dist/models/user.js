@@ -10,6 +10,10 @@ const userShema = new mongoose_1.default.Schema({
         required: true,
         unique: true,
     },
+    salt: {
+        type: String,
+        required: true,
+    },
     password: {
         type: String,
         required: true,
