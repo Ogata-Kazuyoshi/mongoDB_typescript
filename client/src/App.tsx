@@ -12,19 +12,9 @@ import { checkAuth } from './controllers/helperFunction';
 import Record from './components/Personal/Record';
 import Ranking from './components/Personal/Ranking';
 import Setting from './components/Personal/Setting';
+import Game from './components/Game/Game';
 
 function App() {
-  // const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   const initialize = async () => {
-  //     const result = await checkAuth();
-  //     if (result) {
-  //       dispatch(passIsAuth());
-  //     }
-  //   };
-  //   initialize();
-  // });
-
   return (
     <>
       <BrowserRouter>
@@ -40,6 +30,7 @@ function App() {
             <Route path="/personal/ranking" element={<Ranking />} />
             <Route path="/personal/setting" element={<Setting />} />
           </Route>
+          <Route path="/game" element={<Game />} />
         </Routes>
       </BrowserRouter>
     </>

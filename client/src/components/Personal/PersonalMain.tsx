@@ -22,10 +22,16 @@ const PersonalMain = () => {
     };
     initialize();
   }, []);
+
+  const startGame = () => {
+    navigate('/game');
+  };
   return (
     <div className="main__content">
       <div>
-        <button className="game_btn">ゲームスタート</button>
+        <button className="game_btn" onClick={startGame}>
+          ゲームスタート
+        </button>
       </div>
       Personal_Main
     </div>

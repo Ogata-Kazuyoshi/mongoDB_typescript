@@ -22,7 +22,11 @@ const Ranking = () => {
     };
     initialize();
   }, []);
-  return <div className="main__content">Ranking</div>;
+  return (
+    <div className="main__content">
+      <div className="main__content--ranking">Ranking</div>
+    </div>
+  );
 };
 
 export default Ranking;

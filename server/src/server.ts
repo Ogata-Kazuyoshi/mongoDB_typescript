@@ -24,6 +24,9 @@ const setupServer = () => {
     session({
       secret: 'your-secret-key2',
       resave: false,
+      // saveUninitialized: true,
+      // rolling: false,
+      // cookie: { maxAge: 5000 },
     })
   );
   app.use(passport.initialize());

@@ -38,6 +38,7 @@
   font-size: 100px;
   text-align: center;
   padding-top: 300px;
+  overflow: auto;
 }
 
 .game_btn {
@@ -47,4 +48,8 @@
   border-radius: 10px;
   background-color: rgb(0, 146, 146);
   font-size: 30px;
+}
+
+.main__content--ranking {
+  height: 2000px;
 }
