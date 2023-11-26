@@ -18,6 +18,9 @@ const userShema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    vehicle: {
+        type: String,
+    },
 });
 exports.default = mongoose_1.default.model('User', userShema);
 //UserがMONGODBのテーブル名になる --> 「users」

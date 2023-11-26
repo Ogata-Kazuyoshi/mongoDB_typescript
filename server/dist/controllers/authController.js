@@ -58,6 +58,9 @@ passport_1.default.deserializeUser((id, done) => {
         _id: user._id,
         username: user.username,
     };
+    if (user.vehicle) {
+        sendUser.vehicle = user.vehicle;
+    }
     done(null, sendUser);
 });
 const authController = {
@@ -91,7 +94,8 @@ const authController = {
         }
     },
     update: async (req, res) => {
-        const username = req.params.name;
+        const username = req.user.username;
+        console.log('user : ', username);
         try {
             const users = await user_1.default.find({
                 username: username,
@@ -119,12 +123,17 @@ const authController = {
     },
     checkAuth: (req, res) => {
         if (req.isAuthenticated()) {
+            console.log('req.user : ', req.user);
+            const sendUserInfo = {
+                // id: (req.user as Express.User)._id,
+                username: req.user.username,
+            };
+            if (req.user.vehicle) {
+                sendUserInfo.vehicle = req.user.vehicle;
+            }
             res.json({
                 authenticated: true,
-                user: {
-                    id: req.user._id,
-                    username: req.user.username,
-                },
+                user: sendUserInfo,
             });
         }
         else {

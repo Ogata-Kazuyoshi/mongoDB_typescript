@@ -6,6 +6,7 @@ export const checkAuth = async () => {
     console.log('res : ', res);
     if (res.data.authenticated) {
       console.log('cookieあるよ！');
+      // console.log('userInfo : ', res.data.user);
       return res.data.user;
     } else {
       console.log('cookieないよ!!');

@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import User from '../models/user';
-import { UserType, UserTypeFromMongoDB } from '../interface/global';
+import {
+  BrowserSendType,
+  UserType,
+  UserTypeFromMongoDB,
+} from '../interface/global';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { ObjectId } from 'mongoose';
@@ -11,6 +15,8 @@ declare namespace Express {
     username: string;
     password: string;
     _id: ObjectId; // あなたの実際の型に合わせて変更
+    salt: string;
+    vehicle?: string;
   }
 }
 
@@ -77,10 +83,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   //cookie情報を入れる際に返却するuser情報。ソルト化されたPWなどは落とすようにする。
   const user = users.find((u) => JSON.stringify(u._id) === JSON.stringify(id));
-  const sendUser = {
+  const sendUser: BrowserSendType = {
     _id: user!._id,
     username: user!.username,
   };
+  if (user!.vehicle) {
+    sendUser.vehicle = user!.vehicle;
+  }
   done(null, sendUser);
 });
 
@@ -112,7 +121,8 @@ const authController = {
     }
   },
   update: async (req: Request, res: Response) => {
-    const username = req.params.name;
+    const username = (req.user as Express.User).username;
+    console.log('user : ', username);
     try {
       const users: UserTypeFromMongoDB[] = await User.find({
         username: username,
@@ -138,12 +148,17 @@ const authController = {
   },
   checkAuth: (req: Request, res: Response) => {
     if (req.isAuthenticated()) {
+      console.log('req.user : ', req.user);
+      const sendUserInfo: BrowserSendType = {
+        // id: (req.user as Express.User)._id,
+        username: (req.user as Express.User).username,
+      };
+      if ((req.user as Express.User).vehicle) {
+        sendUserInfo.vehicle = (req.user as Express.User).vehicle;
+      }
       res.json({
         authenticated: true,
-        user: {
-          id: (req.user as Express.User)._id,
-          username: (req.user as Express.User).username,
-        },
+        user: sendUserInfo,
       });
     } else {
       res.json({ authenticated: false });

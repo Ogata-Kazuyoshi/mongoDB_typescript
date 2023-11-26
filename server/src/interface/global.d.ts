@@ -4,6 +4,7 @@ export interface UserType {
   username: string;
   salt: string;
   password: string;
+  vehicle?: string;
 }
 
 interface MongoDB {
@@ -11,3 +12,9 @@ interface MongoDB {
 }
 
 export type UserTypeFromMongoDB = UserType & MongoDB;
+
+export interface BrowserSendType {
+  _id?: ObjectId;
+  username: string;
+  vehicle?: string;
+}

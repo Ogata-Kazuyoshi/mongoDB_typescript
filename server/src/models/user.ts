@@ -14,6 +14,9 @@ const userShema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  vehicle: {
+    type: String,
+  },
 });
 
 export default mongoose.model('User', userShema);

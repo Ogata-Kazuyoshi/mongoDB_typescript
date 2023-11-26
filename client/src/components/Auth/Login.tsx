@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import '../../styles/Auth/login.css';
 import authApi from '../../api/auth';
 import { useAppSelector, useAppDispatch } from '../../features/hooks';
 import { decrement, increment } from '../../features/Slice/CounterSlice';
 import { checkAuth } from '../../controllers/helperFunction';
 import { passIsAuth, setUsernameGlobal } from '../../features/Slice/UserSlice';
+import { setChoosenVehicle } from '../../features/Slice/SelectVehicleSlice';
 import { useNavigate } from 'react-router-dom';
 import { UserInfo } from '../../interface/global';
 
@@ -17,7 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const count = useAppSelector((state) => state.counter.value);
-  const isAuth = useAppSelector((state) => state.userAuth.isAuth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -30,6 +30,9 @@ const Login = () => {
         const user: string = result.username;
         console.log('result : ', result);
         dispatch(setUsernameGlobal(user));
+        if (result.vehicle) {
+          dispatch(setChoosenVehicle(result.vehicle));
+        }
         navigate('/personal/main');
       }
     };
@@ -67,6 +70,9 @@ const Login = () => {
             const user: string = result.username;
             console.log('result : ', result);
             dispatch(setUsernameGlobal(user));
+            if (result.vehicle) {
+              dispatch(setChoosenVehicle(result.vehicle));
+            }
             navigate('/personal/main');
           }
         }

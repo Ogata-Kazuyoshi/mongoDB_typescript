@@ -9,6 +9,8 @@ const authApi = {
   logout: () => axiosClient.get('/auth/logout', { withCredentials: true }),
   signup: (params: CrteateUser) =>
     axiosClient.post('auth/signup', params, { withCredentials: true }),
+  update: (params: { vehicle: string }) =>
+    axiosClient.put(`/auth`, params, { withCredentials: true }),
 };
 
 export default authApi;

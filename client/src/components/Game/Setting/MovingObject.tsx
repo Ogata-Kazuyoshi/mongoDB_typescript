@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useEffect,
-} from 'react';
+import { forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
 import {
   useThree,
   extend,
@@ -29,7 +24,7 @@ declare global {
   }
 }
 
-const MovingObject = forwardRef((props, ref) => {
+const MovingObject = forwardRef((_, ref) => {
   const { camera, gl } = useThree<ThreeCanvasProps>();
   const controlsRef = useRef<OrbitControls>(null);
 

@@ -40,6 +40,8 @@ const setupServer = () => {
     console.log(error);
   }
 
+  app.use(express.static('./dist/dist'));
+
   app.use('/api/v1', apiRoute);
 
   return app;

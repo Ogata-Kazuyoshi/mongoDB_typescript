@@ -53,3 +53,8 @@
 .main__content--ranking {
   height: 2000px;
 }
+
+.main__content--wrap {
+  display: flex;
+  justify-content: space-around;
+}

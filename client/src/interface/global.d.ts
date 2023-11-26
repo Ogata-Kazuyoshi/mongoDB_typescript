@@ -4,6 +4,7 @@ export interface CrteateUser {
 }
 
 export interface UserInfo {
-  id: string;
+  // id: string;
   username: string;
+  vehicle?: string;
 }

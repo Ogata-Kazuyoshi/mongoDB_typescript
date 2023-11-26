@@ -25,6 +25,9 @@ const setupServer = () => {
     app.use((0, express_session_1.default)({
         secret: 'your-secret-key2',
         resave: false,
+        // saveUninitialized: true,
+        // rolling: false,
+        // cookie: { maxAge: 5000 },
     }));
     app.use(passport_1.default.initialize());
     app.use(passport_1.default.session());
@@ -36,6 +39,7 @@ const setupServer = () => {
     catch (error) {
         console.log(error);
     }
+    app.use(express_1.default.static('./dist/dist'));
     app.use('/api/v1', index_1.default);
     return app;
 };

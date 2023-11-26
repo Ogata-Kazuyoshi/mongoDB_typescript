@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { checkAuth } from '../../controllers/helperFunction';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../features/hooks';

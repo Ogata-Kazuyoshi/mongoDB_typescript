@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import '../../styles/Personal/navbar.css';
 import authApi from '../../api/auth';
 import { useAppDispatch, useAppSelector } from '../../features/hooks';
-import {
-  passIsAuth,
-  failIsAuth,
-  setUsernameGlobal,
-} from '../../features/Slice/UserSlice';
+import { failIsAuth, setUsernameGlobal } from '../../features/Slice/UserSlice';
 
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';

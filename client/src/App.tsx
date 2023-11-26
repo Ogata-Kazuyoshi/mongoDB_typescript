@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rooting from './Rooting';
@@ -6,13 +5,11 @@ import AuthLayout from './components/Auth/AuthLayout';
 import Login from './components/Auth/Login';
 import Navbar from './components/Personal/Navbar';
 import PersonalMain from './components/Personal/PersonalMain';
-import { useAppDispatch } from './features/hooks';
-import { passIsAuth } from './features/Slice/UserSlice';
-import { checkAuth } from './controllers/helperFunction';
 import Record from './components/Personal/Record';
 import Ranking from './components/Personal/Ranking';
 import Setting from './components/Personal/Setting';
 import Game from './components/Game/Game';
+import SettingTop from './components/Game/Setting/SettingTop';
 
 function App() {
   return (
@@ -30,7 +27,9 @@ function App() {
             <Route path="/personal/ranking" element={<Ranking />} />
             <Route path="/personal/setting" element={<Setting />} />
           </Route>
-          <Route path="/game" element={<Game />} />
+          <Route path="/game" element={<Game />}>
+            <Route path="/game/setting" element={<SettingTop />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
